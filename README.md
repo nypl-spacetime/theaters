@@ -1,6 +1,14 @@
+# History of theaters in New York City
 
+Repository created during [Broadway Hackathon 2016](http://www.nypl.org/blog/2016/02/19/announcing-broadway-hackathon).
 
-#All museums (including subclass of museum) in Washington, D.C. with coordinates
+Goal: create (crowd-sourced) database of the history of NYC's theaters.
+
+## Wikidata
+
+https://query.wikidata.org
+
+```sparql
 #defaultView:Map
 SELECT DISTINCT ?item ?name ?coord ?lat ?lon
 WHERE {
@@ -17,3 +25,8 @@ WHERE {
    }
 }
 ORDER BY ASC (?name)
+```
+
+## Google Spreadsheet
+
+https://docs.google.com/spreadsheets/d/17iY1RrtjrBksKMd7SP7mj34RZnaj1sZ90MmDtkBTKNs/pubhtml
