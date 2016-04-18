@@ -27,7 +27,7 @@ WHERE {
   SERVICE wikibase:label {
     bd:serviceParam wikibase:language "en" .
     ?item rdfs:label ?name
-   }
+  }
 }
 ORDER BY ASC (?name)
 ```
