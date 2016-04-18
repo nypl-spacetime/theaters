@@ -9,12 +9,17 @@ Goal: create (crowd-sourced) database of the history of NYC's theaters.
 https://query.wikidata.org
 
 ```sparql
-#defaultView:Map
-SELECT DISTINCT ?item ?name ?coord ?lat ?lon
+#defaultView:Table
+SELECT DISTINCT ?item ?name ?coord ?lat ?lon ?ibdbid ?owner ?capacity ?openingDate ?architect ?address
 WHERE {
    ?item wdt:P131* wd:Q60 .
    ?item wdt:P31/wdt:P279* wd:Q24354 .
-   ?item wdt:P625 ?coord .
+   OPTIONAL { ?item wdt:P1217 ?ibdbid } .
+   OPTIONAL { ?item wdt:P127 ?owner } .
+   OPTIONAL { ?item wdt:P1083 ?capacity } .
+   OPTIONAL { ?item wdt:P1619 ?openingDate } .
+   OPTIONAL { ?item wdt:P84 ?architect } .
+   OPTIONAL { ?item wdt:P969 ?address } .
    ?item p:P625 ?coordinate .
    ?coordinate psv:P625 ?coordinate_node .
    ?coordinate_node wikibase:geoLatitude ?lat .
