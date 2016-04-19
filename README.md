@@ -10,7 +10,7 @@ https://query.wikidata.org
 
 ```sparql
 #defaultView:Table
-SELECT DISTINCT ?item ?name ?lat ?lon ?photo ?ibdbid ?owner ?capacity ?openingDate ?architect ?address
+SELECT DISTINCT ?item ?name ?coord ?lat ?lon ?photo ?ibdbid ?owner ?capacity ?openingDate ?architect ?address
 WHERE {
    ?item wdt:P131* wd:Q60 .
    ?item wdt:P31/wdt:P279* wd:Q24354 .
@@ -21,10 +21,14 @@ WHERE {
    OPTIONAL { ?item wdt:P1619 ?openingDate } .
    OPTIONAL { ?item wdt:P84 ?architect } .
    OPTIONAL { ?item wdt:P969 ?address } .
-   OPTIONAL { ?item p:P625 ?coordinate .
-   ?coordinate psv:P625 ?coordinate_node .
-   ?coordinate_node wikibase:geoLatitude ?lat .
-   ?coordinate_node wikibase:geoLongitude ?lon } .
+   OPTIONAL { 
+     ?item wdt:P625 ?coord .
+     ?item p:P625 ?coordinate .
+     ?coordinate psv:P625 ?coordinate_node .
+     ?coordinate_node wikibase:geoLatitude ?lat .
+     ?coordinate_node wikibase:geoLongitude ?lon 
+   } .
+  
   SERVICE wikibase:label {
     bd:serviceParam wikibase:language "en" .
     ?item rdfs:label ?name
