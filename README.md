@@ -10,10 +10,11 @@ https://query.wikidata.org
 
 ```sparql
 #defaultView:Table
-SELECT DISTINCT ?item ?name ?lat ?lon ?ibdbid ?owner ?capacity ?openingDate ?architect ?address
+SELECT DISTINCT ?item ?name ?lat ?lon ?photo ?ibdbid ?owner ?capacity ?openingDate ?architect ?address
 WHERE {
    ?item wdt:P131* wd:Q60 .
    ?item wdt:P31/wdt:P279* wd:Q24354 .
+   OPTIONAL { ?item wdt:P18 ?photo } .
    OPTIONAL { ?item wdt:P1217 ?ibdbid } .
    OPTIONAL { ?item wdt:P127 ?owner } .
    OPTIONAL { ?item wdt:P1083 ?capacity } .
